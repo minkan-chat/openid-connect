@@ -9,3 +9,6 @@ impl OpenIDClient {
         self.jwks.iter()
     }
 }
+
+#[test]
+fn it_works() {}
