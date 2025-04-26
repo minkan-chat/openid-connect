@@ -1,0 +1,38 @@
+[package]
+name = "openid-connect"
+version = "0.0.1"
+edition = "2021"
+license = "MIT OR Apache-2.0"
+rust-version = "1.84"
+authors = [
+  "Erik Tesar <erik@erik-tesar.com>",
+  "Justus K. <justus.k@protonmail.com>",
+]
+description = "A OpenID Connect implementation based on the `jose` crate"
+readme = "README.md"
+homepage = "https://github.com/minkan-chat/openid-connect"
+repository = "https://github.com/minkan-chat/openid-connect.git"
+keywords = ["jwt", "oauth2", "openid", "authentication"]
+categories = ["cryptography", "no-std", "authentication"]
+
+[features]
+default = []
+std = ["jose/std"]
+crypto-rustcrypto = ["jose/crypto-rustcrypto"]
+crypto-openssl = ["std", "jose/crypto-openssl"]
+crypto-openssl-vendored = ["jose/crypto-openssl-vendored"]
+crypto-aws-lc = ["jose/crypto-aws-lc"]
+crypto-ring = ["jose/crypto-ring"]
+
+# This feature enables the deterministic signature generation
+# using EcDSA according to RFC 6979
+deterministic-ecdsa = ["jose/deterministic-ecdsa"]
+
+[dependencies]
+jose = { version = "0.0.2", default-features = false }
+
+[dev-dependencies]
+
+[package.metadata.docs.rs]
+features = ["crypto-rustcrypto", "std", "deterministic-ecdsa"]
+rustdoc-args = ["--cfg", "docsrs"]
